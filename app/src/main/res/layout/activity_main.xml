@@ -1,0 +1,50 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/start_screen">
+    <Button
+        android:id="@+id/replay_btn"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:autoText="false"
+        android:background="@drawable/start_btn_bg"
+        android:capitalize="none"
+        android:editable="false"
+        android:ellipsize="none"
+        android:height="10dp" />
+
+    <Button
+        android:id="@+id/howtoplay_btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignBaseline="@+id/replay_btn"
+        android:layout_alignBottom="@+id/replay_btn"
+        android:layout_marginRight="58dp"
+        android:layout_toLeftOf="@+id/replay_btn"
+        android:background="@drawable/howtoplay_btn_bg" />
+
+    <Button
+        android:id="@+id/pause_btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignBaseline="@+id/replay_btn"
+        android:layout_alignBottom="@+id/replay_btn"
+        android:layout_marginLeft="61dp"
+        android:layout_toRightOf="@+id/replay_btn"
+        android:background="@drawable/highscore_btn_bg" />
+
+    <Button
+        android:id="@+id/music_btn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignBaseline="@+id/pause_btn"
+        android:layout_alignBottom="@+id/pause_btn"
+        android:layout_marginLeft="62dp"
+        android:layout_toRightOf="@+id/pause_btn"
+        android:background="@drawable/info_btn" />
+
+</RelativeLayout>

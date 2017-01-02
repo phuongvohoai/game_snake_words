@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="320dp"
+    android:layout_height="200dp"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dialog_bgr" />
+
+    <TextView
+        android:id="@+id/tvMessage_dialog"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:autoLink="none"
+        android:gravity="center"
+        android:paddingBottom="4dp"
+        android:paddingLeft="4dp"
+        android:shadowColor="#000000"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="1"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnNo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/tvMessage_dialog"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/x_icon" />
+
+    <Button
+        android:id="@+id/btnYes"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/tvMessage_dialog"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="17dp"
+        android:background="@drawable/accept_icon" />
+
+    <TextView
+        android:id="@+id/tvText_dialog"
+        android:layout_width="270dp"
+        android:layout_height="90dp"
+        android:layout_above="@+id/btnNo"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#5e5e5e"
+        android:textStyle="normal|bold" />
+
+</RelativeLayout>
