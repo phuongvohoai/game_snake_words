@@ -3,11 +3,9 @@ package com.example.phuongvo.snakewords;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
+import java.util.Arrays;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -16,6 +14,7 @@ import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,7 +40,7 @@ public class MainActivity extends Activity {
 	
 	int G_int;
 	Dialog dialog;
-	TextView text, result_tv, viet_tv, score_tv, timer_tv, special_tv, bonus_tv,tvText, tvMessage;
+	TextView text, result_tv, vie_w, score_tv, timer_tv, special_tv, bonus_tv,tvText, tvMessage;
 	ImageView snake_hint;
 	private GridView gridView;
 	Random r= new Random();
@@ -87,7 +86,7 @@ public class MainActivity extends Activity {
 		
         snake_hint= (ImageView) findViewById(R.id.snakehint_btn);
     	result_tv= (TextView) findViewById(R.id.result_tv);
-		viet_tv = (TextView) findViewById(R.id.vie_w);
+		vie_w = (TextView) findViewById(R.id.vie_w);
 		score_tv= (TextView) findViewById(R.id.score_tv);
 	    tooltip_btn = (Button) findViewById(R.id.tooltip_btn);
         hint_btn= (Button) findViewById(R.id.replay_btn);
@@ -698,27 +697,32 @@ public class MainActivity extends Activity {
 					return new vector2d(_c,_r);
 		return new vector2d(0,0);
     }
-    private void GetSpecialWord()
-    {
-    	//Load SpecialWord
-    	int randomspeacialword;
-    	String str=result_tv.getText().toString();
-    	while(str.matches(".*\\b"+specialword+"\\b.*")||specialword==null)
-    	{
-    		randomspeacialword=r.nextInt(WordsEachLevel-1);
-    		specialword=ListWords.get(randomspeacialword);
-    	}
+    private void GetSpecialWord() {
+        //Load SpecialWord
+        int randomspeacialword;
+        String str = result_tv.getText().toString();
+        Log.d("resulttv", "GetSpecialWord: " + str);
+        String[] resultList = str.split(" ");
+        List<String> itemList = Arrays.asList(resultList);
+        String resultWord = "";
+        do {
+            randomspeacialword = r.nextInt(WordsEachLevel - 1);
+            specialword = ListWords.get(randomspeacialword);
+            resultWord = new String(specialword);
+            Log.d("specialword", "GetSpecialWord: " + specialword);
+        } while (itemList.contains(resultWord.toUpperCase()));
     }
+
     public void SetScore(int score, MainActivity _context)
-    {     	
-		_context.level_score+=score;
-		int _score=_context.level_score;
+    {
+        _context.level_score+=score;
+        int _score=_context.level_score;
 		_context.score_tv.setText(_score+"");
-		if(_score >=score_require)
+		if(_score >= score_require)
 		{
 			_context.passed=true;
-			time_score = (int) (_context.millis/1000);
-			_score+=time_score;
+			//time_score = (int) (_context.millis/1000);
+			//_score+=time_score;
 			_context.level_score=_score;
 			_context.score_tv.setText(_score+"");
 			_context.PassLevel();	
@@ -848,10 +852,12 @@ public class MainActivity extends Activity {
 			millis=millisUntilFinished;
 			int time =(int)millis/1000;
 			timer_tv.setText(time+"");
-			if(time==time_sw)
+			if(!isshow_sw)
 			{
-				GetSpecialWord();
-				special_tv.setText(specialword.toUpperCase());
+                //Log.d("get isshow", "onTick: " + isshow_sw);
+                GetSpecialWord();
+                //Log.d("special word", "onTick: " + specialword);
+                special_tv.setText(specialword.toUpperCase());
 				_bonus=r.nextInt(specialword.length())+1;
 				bonus_tv.setText("+"+_bonus);
 				//time end special word not smaller 5
@@ -860,11 +866,14 @@ public class MainActivity extends Activity {
 			}
 			if(isshow_sw)
 			{
-				
-				if(timeend_sw==0 || answered)
+                //Log.d("timeend_sw", "onTick: " + timeend_sw);
+                //Log.d("answered", "onTick: " + answered);
+                if(timeend_sw==0 || answered)
 				{
 					isshow_sw=false;
-					special_tv.setText("");
+                    answered = false;
+                    //Log.d("set isshow", "onTick: " + isshow_sw);
+                    special_tv.setText("");
 					bonus_tv.setText(" ");
 				}
 				timeend_sw--;

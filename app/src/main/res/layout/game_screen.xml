@@ -155,7 +155,7 @@
          android:layout_height="wrap_content"
          android:layout_alignBaseline="@+id/specialw_tv"
          android:layout_alignBottom="@+id/specialw_tv"
-         android:layout_marginLeft="35dp"
+         android:layout_marginLeft="20dp"
          android:layout_toRightOf="@+id/specialw_tv"
          android:textColor="#f00000"
          android:textSize="20sp"

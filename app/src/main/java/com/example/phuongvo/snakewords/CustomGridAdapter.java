@@ -8,13 +8,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.media.MediaPlayer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +46,9 @@ public class CustomGridAdapter extends BaseAdapter {
     				String str=context.result_tv.getText().toString();
     				if(!str.matches(".*\\b"+word+"\\b.*"))
     				{
-    					context.SetScore(word.length(), context);
+						int score = word.length();
+						Log.d("score", "CustomGridAdapter" + score);
+						context.SetScore(score, context);
     					SetResult(word);
     					MediaPlayer mp = MediaPlayer.create(context.getBaseContext(), R.raw.glass_button);
     					mp.start();
@@ -184,7 +186,7 @@ public class CustomGridAdapter extends BaseAdapter {
     	}
     	Buttons_Press.clear();
     	context.tooltip_btn.setText("");
-    	context.viet_tv.setText("");
+    	context.vie_w.setText("");
     	
     	
     }
@@ -251,7 +253,7 @@ public class CustomGridAdapter extends BaseAdapter {
     	if(_word.equals(str))//if special word is show 
     	{
 			SetResult(_word);
-			context.SetScore(_word.length()+context._bonus, context);
+			context.SetScore(context._bonus, context);
 			MediaPlayer mp3 = MediaPlayer.create(context.getBaseContext(), R.raw.coin);
 			mp3.start();
 			Return2Default();
@@ -277,10 +279,11 @@ public class CustomGridAdapter extends BaseAdapter {
 	    	mDbHelper.createDatabase();       
 	    	mDbHelper.open(); 
 	    	testdata = mDbHelper.getWordData(word.toLowerCase());
-	    	mean=Utility.StringGetColumnValue(testdata, "vie_w");
-	    	mDbHelper.close();
+            mean=Utility.StringGetColumnValue(testdata, "vie_w");
+            Log.d("mean", "SetText: "+ mean);
+            mDbHelper.close();
 		}
-		context.viet_tv.setText(mean);
+		context.vie_w.setText(mean);
 		context.tooltip_btn.setText(word);	
 	}
     
