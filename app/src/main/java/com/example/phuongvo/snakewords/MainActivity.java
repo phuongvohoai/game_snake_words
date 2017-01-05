@@ -87,6 +87,7 @@ public class MainActivity extends Activity {
         snake_hint= (ImageView) findViewById(R.id.snakehint_btn);
     	result_tv= (TextView) findViewById(R.id.result_tv);
 		vie_w = (TextView) findViewById(R.id.vie_w);
+        vie_w.setText("tau set");
 		score_tv= (TextView) findViewById(R.id.score_tv);
 	    tooltip_btn = (Button) findViewById(R.id.tooltip_btn);
         hint_btn= (Button) findViewById(R.id.replay_btn);

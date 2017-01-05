@@ -186,7 +186,7 @@ public class CustomGridAdapter extends BaseAdapter {
     	}
     	Buttons_Press.clear();
     	context.tooltip_btn.setText("");
-    	context.vie_w.setText("");
+    	context.vie_w.setText("aaaa");
     	
     	
     }
